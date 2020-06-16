@@ -17,7 +17,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         title: Text('Home'),
       ),
         body: GridView(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.all(10),
           children: CATEGORIES
               .map(
                   (catData) => CategoryItem(

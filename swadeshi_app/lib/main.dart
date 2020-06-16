@@ -17,9 +17,10 @@ class MyApp extends StatelessWidget {
         // accentColor: Colors.blue,
         textTheme: TextTheme(
           headline6:TextStyle(
-              fontSize: 17,
+              fontSize: 20,
               fontFamily: 'BalsamiqSans',
-              fontWeight: FontWeight.bold
+              fontWeight: FontWeight.bold,
+              color: Colors.white
           )
         )
       ),

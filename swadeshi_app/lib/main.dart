@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './screens/category_screen.dart';
+import './home_screen/category_screen.dart';
 import 'models/category.dart';
 
 void main() {
@@ -11,13 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Swadeshi App',
       theme: ThemeData(
         // accentColor: Colors.blue,
         textTheme: TextTheme(
-          title:TextStyle(
+          headline6:TextStyle(
               fontSize: 17,
-              fontFamily: 'BalasmiqSans',
+              fontFamily: 'BalsamiqSans',
               fontWeight: FontWeight.bold
           )
         )

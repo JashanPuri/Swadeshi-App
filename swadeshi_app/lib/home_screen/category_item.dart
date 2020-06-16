@@ -39,7 +39,7 @@ class CategoryItem extends StatelessWidget {
               //SizedBox(height: 5,),
               Text(
                 title,
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.headline6  ,
               )
             ],
           )

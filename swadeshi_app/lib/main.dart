@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './screens/category_screen.dart';
+import 'models/category.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,9 +13,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Swadeshi App',
       theme: ThemeData(
-        primarySwatch: Colors.white,
         // accentColor: Colors.blue,
+        textTheme: TextTheme(
+          title:TextStyle(
+              fontSize: 17,
+              fontFamily: 'BalasmiqSans',
+              fontWeight: FontWeight.bold
+          )
+        )
       ),
+      home: CategoryScreen(),
     );
   }
 }

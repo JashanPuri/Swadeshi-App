@@ -6,5 +6,10 @@ class Category {
   final Image imageLogo;
   final Color cardColor;
 
-  const Category({@required this.id, this.imageLogo, @required this.title,this.cardColor});
+  Category({
+    @required this.id,
+    @required this.title,
+    this.imageLogo,
+    @required this.cardColor
+  });
 }

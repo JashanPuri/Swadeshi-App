@@ -28,6 +28,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  flutter_sticky_header:
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +47,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/category_icons/
+    - assets/category_icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -60,9 +61,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: BalasamiqSans
+    - family: BalsamiqSans
       fonts:
-        - asset: assets/fonts/BalasamiqSans-Bold.tff
+        - asset: assets/fonts/BalsamiqSans-Regular.ttf
+        - asset: assets/fonts/BalsamiqSans-Bold.ttf
+          weight: 700
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

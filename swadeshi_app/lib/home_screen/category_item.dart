@@ -10,7 +10,8 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
-      onTap: (){},
+      onTap: (){
+      },
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -22,9 +23,11 @@ class CategoryItem extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                color,
-                color.withOpacity(0.6)
-              ]
+                color.withOpacity(1),
+                color.withOpacity(0.8),
+                color.withOpacity(0.73)
+              ],
+              stops: [0.55,0.8,1]
           ),
           ),
           padding: EdgeInsets.all(10),
@@ -36,10 +39,13 @@ class CategoryItem extends StatelessWidget {
                   backgroundColor: Colors.white,
                   child: imageLogo
               ),
-              //SizedBox(height: 5,),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.title,
+              // SizedBox(height: 5,),
+              FittedBox(
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.headline6  ,
+                  softWrap: true,
+                ),
               )
             ],
           )

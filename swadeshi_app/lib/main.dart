@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import './screens/category_screen.dart';
-import 'models/category.dart';
+import 'package:flutter/services.dart';
+import './home_screen/category_screen.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.blue,
+      statusBarBrightness: Brightness.dark,
+    ),
+  );
   runApp(MyApp());
 }
 
@@ -11,17 +17,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Swadeshi App',
       theme: ThemeData(
-        // accentColor: Colors.blue,
-        textTheme: TextTheme(
-          title:TextStyle(
-              fontSize: 17,
-              fontFamily: 'BalasmiqSans',
-              fontWeight: FontWeight.bold
-          )
-        )
-      ),
+          primaryColor: Colors.blue,
+          // accentColor: Colors.blue,
+          textTheme: TextTheme(
+              headline6: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'BalsamiqSans',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white))),
       home: CategoryScreen(),
     );
   }

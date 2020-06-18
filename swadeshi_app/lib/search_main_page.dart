@@ -38,8 +38,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
         : GridView(
             padding: const EdgeInsets.all(10),
             children: resultList
-                .map((catData) => CategoryItem(catData.id, catData.title,
-                    catData.imageLogo, catData.cardColor
+                .map((catData) => CategoryItem(category: catData,
                     //catData.color
                     ))
                 .toList(),
@@ -61,8 +60,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
         : GridView(
           padding: const EdgeInsets.all(10),
           children: suggestionList
-              .map((catData) => CategoryItem(catData.id, catData.title,
-                  catData.imageLogo, catData.cardColor
+              .map((catData) => CategoryItem(category: catData,
                   //catData.color
                   ))
               .toList(),

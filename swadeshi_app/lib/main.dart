@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './home_screen/category_screen.dart';
+import 'drawer/info_page.dart';
 import 'home_screen/splash_screen.dart';
 
 void main() {
@@ -28,11 +29,20 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'BalsamiqSans',
                   fontWeight: FontWeight.bold,
-                  color: Colors.white))),
-      home: splashScreen(),
-      routes: {
-        '/category-screen': (ctx) => CategoryScreen()
-      }
+                  color: Colors.white
+              ),
+              headline5: TextStyle(
+                fontSize: 20,
+                fontFamily: 'BalsamiqSans',
+                fontWeight: FontWeight.normal,
+                color: Colors.white,
+              )
+          )),
+                  home: splashScreen(),
+                  routes: {
+                        '/category-screen': (ctx) => CategoryScreen(),
+                        '/info-page': (ctx) => InfoPage()
+                    }
     );
   }
 }

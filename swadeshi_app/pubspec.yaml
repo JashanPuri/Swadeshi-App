@@ -23,12 +23,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_launcher_icons:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   flutter_sticky_header:
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/other_images/make_in_india.png"
+
 
 dev_dependencies:
   splashscreen:
@@ -50,6 +56,7 @@ flutter:
   assets:
     - assets/category_icons/
     - assets/other_images/
+    - assets/indian_flag_image/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

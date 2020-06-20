@@ -18,14 +18,14 @@ class _AnimatedToggleButtonState extends State<AnimatedToggleButton> {
     return InkWell(
       onTap: () {
         setState(() {
-          widget.changeState(context);
+          widget.changeState();
           widget.boolValue = !widget.boolValue;
         });
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 1000),
-        width: 85,
-        height: 30,
+        width: 100,
+        height: 40,
         decoration: BoxDecoration(
           color: widget.boolValue ? Colors.greenAccent[100] : Colors.grey[400],
           borderRadius: BorderRadius.circular(20),
@@ -35,9 +35,9 @@ class _AnimatedToggleButtonState extends State<AnimatedToggleButton> {
             AnimatedPositioned(
               duration: Duration(milliseconds: 1000),
               curve: Curves.easeIn,
-              top: 3.0,
-              left: widget.boolValue ? 55 : 0,
-              right: widget.boolValue ? 0 : 55,
+              top: 5.0,
+              left: widget.boolValue ? 63 : 0,
+              right: widget.boolValue ? 0 : 63,
               child: AnimatedSwitcher(
                 duration: Duration(milliseconds: 1000),
                 transitionBuilder: (child, animation) {

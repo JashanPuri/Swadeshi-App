@@ -44,15 +44,47 @@ class SearchCategoriesAndProducts extends SearchDelegate {
             return element.title.toLowerCase().contains(query.toLowerCase());
           }).toList();
     return query == ""
-        ? Container(
-            child: Column(
-              children: <Widget>[
-                Text('Search by products'),
-                AnimatedToggleButton(
-                  changeState: changeState,
-                  boolValue: showProducts,
-                )
-              ],
+        ? Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 20,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Search by products',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .copyWith(color: Colors.black),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5, bottom: 50),
+                      child: AnimatedToggleButton(
+                        changeState: changeState,
+                        boolValue: showProducts,
+                        buttonOff: Icon(
+                          Icons.remove_circle_outline,
+                          color: Colors.red,
+                          size: 30,
+                          key: UniqueKey(),
+                        ),
+                        buttonOn: Icon(
+                          Icons.check_circle_outline,
+                          color: Colors.green,
+                          size: 30,
+                          key: UniqueKey(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           )
         : showProducts
@@ -80,7 +112,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
               );
   }
 
-  void changeState(BuildContext context) {
+  void changeState() {
     showProducts = !showProducts;
   }
 
@@ -106,7 +138,13 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Search by products'),
+                      child: Text(
+                        'Search by products',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .copyWith(color: Colors.black),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 5, bottom: 50),
@@ -116,11 +154,13 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                         buttonOff: Icon(
                           Icons.remove_circle_outline,
                           color: Colors.red,
+                          size: 30,
                           key: UniqueKey(),
                         ),
                         buttonOn: Icon(
                           Icons.check_circle_outline,
                           color: Colors.green,
+                          size: 30,
                           key: UniqueKey(),
                         ),
                       ),

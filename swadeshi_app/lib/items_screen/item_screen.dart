@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:swadeshi_app/animatedToggleButton.dart';
 
 import '../items_screen/items_search.dart';
 import '../items_screen/items_tile.dart';
@@ -19,7 +20,7 @@ class ItemScreen extends StatefulWidget {
 class _ItemScreenState extends State<ItemScreen> {
   bool onlyIndian = false;
 
-  switchIndian() {
+  void switchIndian() {
     setState(() {
       onlyIndian = !onlyIndian;
     });
@@ -88,72 +89,36 @@ class _ItemScreenState extends State<ItemScreen> {
                         'Apply Filter',
                         style: Theme.of(context).textTheme.headline5.copyWith(
                               color: Colors.grey[700],
-                              fontSize: 15,
+                              fontSize: 17,
                             ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          onlyIndian = !onlyIndian;
-                        });
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 1000),
-                        width: 85,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: onlyIndian
-                              ? Colors.greenAccent[100]
-                              : Colors.grey[400],
-                          borderRadius: BorderRadius.circular(20),
+                    AnimatedToggleButton(
+                      boolValue: onlyIndian,
+                      changeState: switchIndian,
+                      buttonOff: Icon(
+                          Icons.remove_circle_outline,
+                          color: Colors.red,
+                          size: 30,
+                          key: UniqueKey(),
                         ),
-                        child: Stack(
-                          children: <Widget>[
-                            AnimatedPositioned(
-                              duration: Duration(milliseconds: 1000),
-                              curve: Curves.easeIn,
-                              top: 3.0,
-                              left: onlyIndian ? 55 : 0,
-                              right: onlyIndian ? 0 : 55,
-                              child: AnimatedSwitcher(
-                                duration: Duration(milliseconds: 1000),
-                                transitionBuilder: (child, animation) {
-                                  return RotationTransition(
-                                    child: child,
-                                    turns: animation,
-                                  );
-                                },
-                                child: onlyIndian
-                                    ? Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 2.5),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                          ),
-                                          child: ClipOval(
-                                            child: Image.asset(
-                                              "assets/indian_flag_image/indian_flag.png",
-                                              height: 20,
-                                              width: 20,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : Icon(
-                                        Icons.remove_circle_outline,
-                                        color: Colors.red,
-                                        key: UniqueKey(),
-                                      ),
-                              ),
-                            )
-                          ],
+                      buttonOn: Padding(
+                        padding: const EdgeInsets.only(top: 2.8),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              "assets/indian_flag_image/indian_flag.png",
+                              height: 25,
+                              width: 25,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

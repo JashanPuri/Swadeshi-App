@@ -93,10 +93,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   delegate: SliverChildListDelegate(
                     CATEGORIES
                         .map((catData) => CategoryItem(
-                              catData.id,
-                              catData.title,
-                              catData.imageLogo,
-                              catData.cardColor,
+                              category: catData,
                               // catData.color
                             ))
                         .toList(),

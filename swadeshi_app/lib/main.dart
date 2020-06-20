@@ -20,14 +20,23 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Swadeshi App',
       theme: ThemeData(
-          primaryColor: Colors.blue,
-          // accentColor: Colors.blue,
-          textTheme: TextTheme(
-              headline6: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'BalsamiqSans',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white))),
+        primaryColor: Colors.blue,
+        // accentColor: Colors.blue,
+        textTheme: TextTheme(
+          headline6: TextStyle(
+            fontSize: 20,
+            fontFamily: 'BalsamiqSans',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          headline5: TextStyle(
+            fontSize: 20,
+            fontFamily: 'BalsamiqSans',
+            fontWeight: FontWeight.normal,
+            color: Colors.white,
+          ),
+        ),
+      ),
       home: CategoryScreen(),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 
+import '../items_screen/items_search.dart';
 import '../items_screen/items_tile.dart';
 import '../models/category.dart';
 import '../models/item.dart';
@@ -48,7 +49,9 @@ class _ItemScreenState extends State<ItemScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: () {},
+                    onPressed: () => showSearch(
+                        context: context,
+                        delegate: ItemSearch(itemList: finalListItems)),
                   ),
                 ),
                 // Padding(
@@ -76,9 +79,19 @@ class _ItemScreenState extends State<ItemScreen> {
               header: Container(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 color: Colors.white,
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        'Apply Filter',
+                        style: Theme.of(context).textTheme.headline5.copyWith(
+                              color: Colors.grey[700],
+                              fontSize: 15,
+                            ),
+                      ),
+                    ),
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -147,19 +160,26 @@ class _ItemScreenState extends State<ItemScreen> {
               sliver: SliverPadding(
                 padding: EdgeInsets.all(10),
                 sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      print(finalListItems.length);
-                      return finalListItems.isEmpty
-                          ? Center(
-                              child: Text('No Products Available !!'),
-                            )
-                          : ItemTile(
+                  delegate: finalListItems.isEmpty
+                      ? SliverChildListDelegate([
+                          Center(
+                            child: Text(
+                              'No Products !!',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(color: Colors.black, fontSize: 25),
+                            ),
+                          )
+                        ])
+                      : SliverChildBuilderDelegate(
+                          (context, index) {
+                            return ItemTile(
                               itemTile: finalListItems[index],
                             );
-                    },
-                    childCount: finalListItems.length,
-                  ),
+                          },
+                          childCount: finalListItems.length,
+                        ),
                 ),
               ),
             )

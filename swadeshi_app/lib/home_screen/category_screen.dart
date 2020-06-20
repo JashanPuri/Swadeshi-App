@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import '../drawer/drawer.dart';
 
 import '../category_data.dart';
 import '../search_main_page.dart';
@@ -15,6 +16,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),
@@ -48,12 +50,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
               elevation: 0,
               floating: true,
               centerTitle: true,
-              leading: IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {}),
+//              leading: IconButton(
+//                  icon: Icon(
+//                    Icons.menu,
+//                    color: Colors.white,
+//                  ),
+//                  onPressed: () {}),
               // snap: true,
             ),
             SliverStickyHeader(

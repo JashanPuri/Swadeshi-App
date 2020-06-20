@@ -23,7 +23,7 @@ class ItemTile extends StatelessWidget {
         trailing: Column(
           children: <Widget>[
             Text(
-              itemTile.title,
+              "${itemTile.title}",
               style: _theme.textTheme.headline5
                   .copyWith(color: Colors.black54, fontSize: 16),
             ),

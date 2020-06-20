@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './home_screen/category_screen.dart';
+import 'home_screen/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'BalsamiqSans',
                   fontWeight: FontWeight.bold,
                   color: Colors.white))),
-      home: CategoryScreen(),
+      home: splashScreen(),
+      routes: {
+        '/category-screen': (ctx) => CategoryScreen()
+      }
     );
   }
 }

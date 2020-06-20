@@ -31,6 +31,7 @@ dependencies:
   flutter_sticky_header:
 
 dev_dependencies:
+  splashscreen:
   flutter_test:
     sdk: flutter
 
@@ -48,6 +49,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/category_icons/
+    - assets/other_images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

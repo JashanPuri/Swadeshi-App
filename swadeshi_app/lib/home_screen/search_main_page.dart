@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../items_screen/items_tile.dart';
-import '../models/item.dart';
+import '../item_data.dart';
 
-class ItemSearch extends SearchDelegate {
-  List<Item> itemList;
-  ItemSearch({this.itemList});
-
+class SearchProducts extends SearchDelegate {
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -33,7 +30,7 @@ class ItemSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    var resultList = itemList.where((element) {
+    var resultList = ITEMS.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase()) ||
           element.title.toLowerCase().contains(query.toLowerCase()) ||
           element.company.toLowerCase().contains(query.toLowerCase());
@@ -44,16 +41,18 @@ class ItemSearch extends SearchDelegate {
     return query == ""
         ? Container()
         : ListView.builder(
-            itemBuilder: (context, index) => ItemTile(
-              itemTile: resultList[index],
-            ),
             itemCount: resultList.length,
+            itemBuilder: (context, index) {
+              return ItemTile(
+                itemTile: resultList[index],
+              );
+            },
           );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var suggestionList = itemList.where((element) {
+    var suggestionList = ITEMS.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase()) ||
           element.title.toLowerCase().contains(query.toLowerCase()) ||
           element.company.toLowerCase().contains(query.toLowerCase());
@@ -64,10 +63,12 @@ class ItemSearch extends SearchDelegate {
     return query == ""
         ? Container()
         : ListView.builder(
-            itemBuilder: (context, index) => ItemTile(
-              itemTile: suggestionList[index],
-            ),
             itemCount: suggestionList.length,
+            itemBuilder: (context, index) {
+              return ItemTile(
+                itemTile: suggestionList[index],
+              );
+            },
           );
   }
 

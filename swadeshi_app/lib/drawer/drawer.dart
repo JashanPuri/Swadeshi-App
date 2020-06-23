@@ -58,6 +58,14 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           SizedBox(height: 20),
           buildListTile(
+              'Home',
+              Icons.home,
+                  (){
+                Navigator.of(context).pushReplacementNamed('/home-screen');
+              }
+          ),
+          SizedBox(height: 20),
+          buildListTile(
               'Categories',
               Icons.category,
                   (){
@@ -71,7 +79,8 @@ class _MainDrawerState extends State<MainDrawer> {
                   (){
                 Navigator.of(context).pushReplacementNamed('/info-page');
               }
-          )
+          ),
+          
         ],
       ),
     );

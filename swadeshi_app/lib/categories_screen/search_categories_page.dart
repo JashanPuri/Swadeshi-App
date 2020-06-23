@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:swadeshi_app/animatedToggleButton.dart';
-import 'package:swadeshi_app/category_data.dart';
-import 'package:swadeshi_app/item_data.dart';
+import 'package:swadeshi_app/models/item.dart';
 
-import 'home_screen/category_item.dart';
-import 'items_screen/items_tile.dart';
+import '../animatedToggleButton.dart';
+import '../category_data.dart';
+import '../item_data.dart';
+import 'category_item.dart';
+import '../items_screen/items_tile.dart';
 
 class SearchCategoriesAndProducts extends SearchDelegate {
   bool showCategories = false;
@@ -41,8 +42,13 @@ class SearchCategoriesAndProducts extends SearchDelegate {
           }).toList()
         : ITEMS.where((element) {
             return element.name.toLowerCase().contains(query.toLowerCase()) ||
-                element.title.toLowerCase().contains(query.toLowerCase());
+                element.title.toLowerCase().contains(query.toLowerCase()) ||
+                element.company.toLowerCase().contains(query.toLowerCase());
           }).toList();
+
+    if (!showCategories)
+      (resultList as List<Item>).sort((a, b) => a.name.compareTo(b.name));
+
     return query == ""
         ? Align(
             alignment: Alignment.topCenter,
@@ -124,8 +130,12 @@ class SearchCategoriesAndProducts extends SearchDelegate {
           }).toList()
         : ITEMS.where((element) {
             return element.name.toLowerCase().contains(query.toLowerCase()) ||
-                element.title.toLowerCase().contains(query.toLowerCase());
+                element.title.toLowerCase().contains(query.toLowerCase()) ||
+                element.company.toLowerCase().contains(query.toLowerCase());
           }).toList();
+
+    if (!showCategories)
+      (suggestionList as List<Item>).sort((a, b) => a.name.compareTo(b.name));
 
     return query == ""
         ? Align(

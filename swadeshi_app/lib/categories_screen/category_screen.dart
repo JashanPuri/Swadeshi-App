@@ -1,18 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+
 import '../drawer/drawer.dart';
-
 import '../category_data.dart';
-import '../search_main_page.dart';
 import 'category_item.dart';
+import 'search_categories_page.dart';
 
-class CategoryScreen extends StatefulWidget {
-  @override
-  _CategoryScreenState createState() => _CategoryScreenState();
-}
-
-class _CategoryScreenState extends State<CategoryScreen> {
+class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +41,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              title: Text('Swadeshi'),
+              title: Text('Categories'),
               elevation: 0,
               floating: true,
               centerTitle: true,

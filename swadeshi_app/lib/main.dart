@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                 changeLanguage: changeLanguage,
                 showInHindi: showInHindi,
               ),
-          '/category-screen': (ctx) => CategoryScreen(),
+          '/category-screen': (ctx) => CategoryScreen(showInHindi),
           '/info-page': (ctx) => InfoPage()
         });
   }

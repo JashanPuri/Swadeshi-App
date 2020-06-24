@@ -8,10 +8,16 @@ import 'category_item.dart';
 import 'search_categories_page.dart';
 
 class CategoryScreen extends StatelessWidget {
+  final bool showInHindi;
+
+  CategoryScreen(this.showInHindi);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(showSwitch: false,),
+      drawer: MainDrawer(
+        showSwitch: false,
+      ),
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),
@@ -57,32 +63,33 @@ class CategoryScreen extends StatelessWidget {
               header: Container(
                 color: Colors.blue,
                 child: Container(
-                    margin: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: InkWell(
-                      onTap: () => showSearch(context: context, delegate: SearchCategoriesAndProducts()),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.search,
-                              size: 30,
-                              color: Colors.grey[600],
-                            ),
-                            Expanded(
-                              child: Text('   Search',
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 20
-                                  )),
-                            ),
-                          ],
-                        ),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: InkWell(
+                    onTap: () => showSearch(
+                        context: context,
+                        delegate: SearchCategoriesAndProducts()),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.search,
+                            size: 30,
+                            color: Colors.grey[600],
+                          ),
+                          Expanded(
+                            child: Text('   Search',
+                                style: TextStyle(
+                                    color: Colors.grey[600], fontSize: 20)),
+                          ),
+                        ],
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ),
               sliver: SliverPadding(
                 padding: EdgeInsets.all(10),
@@ -91,6 +98,7 @@ class CategoryScreen extends StatelessWidget {
                     CATEGORIES
                         .map((catData) => CategoryItem(
                               category: catData,
+                              showInHindi: showInHindi,
                               // catData.color
                             ))
                         .toList(),

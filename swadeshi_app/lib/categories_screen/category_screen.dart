@@ -70,7 +70,7 @@ class CategoryScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () => showSearch(
                         context: context,
-                        delegate: SearchCategoriesAndProducts()),
+                        delegate: SearchCategoriesAndProducts(showInHindi)),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Row(

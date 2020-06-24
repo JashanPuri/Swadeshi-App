@@ -21,11 +21,12 @@ class ItemTile extends StatelessWidget {
         ),
         subtitle: Text('${itemTile.company}'),
         trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Text(
               "${itemTile.title}",
               style: _theme.textTheme.headline5
-                  .copyWith(color: Colors.black54, fontSize: 16),
+                  .copyWith(color: Colors.black54, fontSize: 15),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),

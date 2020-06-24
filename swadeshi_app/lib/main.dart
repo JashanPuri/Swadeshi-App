@@ -16,8 +16,27 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var showInHindi;
+
+  @override
+  void initState() {
+    super.initState();
+    showInHindi = false;
+  }
+
+  void changeLanguage() {
+    setState(() {
+      showInHindi = !showInHindi;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,7 +67,10 @@ class MyApp extends StatelessWidget {
         ),
         home: splashScreen(),
         routes: {
-          '/home-screen': (ctx) => HomeScreen(),
+          '/home-screen': (ctx) => HomeScreen(
+                changeLanguage: changeLanguage,
+                showInHindi: showInHindi,
+              ),
           '/category-screen': (ctx) => CategoryScreen(),
           '/info-page': (ctx) => InfoPage()
         });

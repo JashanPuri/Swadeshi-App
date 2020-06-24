@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:swadeshi_app/drawer/drawer.dart';
-import 'package:swadeshi_app/home_screen/search_main_page.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../drawer/drawer.dart';
+import '../home_screen/search_main_page.dart';
+
+class HomeScreen extends StatefulWidget {
+  final Function changeLanguage;
+  final bool showInHindi;
+
+  HomeScreen({this.changeLanguage, this.showInHindi});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    bool showInHindi = widget.showInHindi;
     return Scaffold(
       appBar: AppBar(
         title: Text('Swadeshi'),
@@ -15,12 +27,19 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.search),
             onPressed: () => showSearch(
               context: context,
-              delegate: SearchProducts(),
+              delegate: SearchProducts(showInHindi),
             ),
           ),
         ],
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(
+        showInHindi: showInHindi,
+        changeLanguage: widget.changeLanguage,
+        showSwitch: true,
+      ),
+      body: Column(
+        children: <Widget>[],
+      ),
     );
   }
 }

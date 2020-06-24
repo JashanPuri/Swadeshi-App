@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:swadeshi_app/models/category.dart';
+
+import '../models/category.dart';
 import '../items_screen/item_screen.dart';
 import '../models/item.dart';
-
 import '../item_data.dart';
 
 class CategoryItem extends StatelessWidget {

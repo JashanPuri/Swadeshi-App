@@ -11,7 +11,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(),
+      drawer: MainDrawer(showSwitch: false,),
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:swadeshi_app/drawer/drawer.dart';
 
-import 'package:swadeshi_app/home_screen/search_main_page.dart';
+import '../drawer/drawer.dart';
+import '../home_screen/search_main_page.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function changeLanguage;
@@ -14,16 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool showInHindi;
-
-  @override
-  void initState() {
-    super.initState();
-    showInHindi = widget.showInHindi;
-  }
-
   @override
   Widget build(BuildContext context) {
+    bool showInHindi = widget.showInHindi;
     return Scaffold(
       appBar: AppBar(
         title: Text('Swadeshi'),
@@ -39,23 +32,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(
+        showInHindi: showInHindi,
+        changeLanguage: widget.changeLanguage,
+        showSwitch: true,
+      ),
       body: Column(
-        children: <Widget>[
-          SwitchListTile(
-            value: showInHindi,
-            onChanged: (value) {
-              setState(() {
-                showInHindi = value;
-              });
-              widget.changeLanguage();
-            },
-            title: Text(
-              'Show in hindi ',
-            ),
-            secondary: Icon(Icons.language),
-          )
-        ],
+        children: <Widget>[],
       ),
     );
   }

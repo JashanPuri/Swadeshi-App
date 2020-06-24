@@ -1,55 +1,70 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatefulWidget {
+  final bool showSwitch;
+  final bool showInHindi;
+  final Function changeLanguage;
+
+  MainDrawer({this.changeLanguage, this.showInHindi, this.showSwitch});
+
   @override
   _MainDrawerState createState() => _MainDrawerState();
 }
 
 class _MainDrawerState extends State<MainDrawer> {
-  Widget buildListTile(String title, IconData icon,Function tapHandler){
+  Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
-      leading: Icon(icon,size: 26,),
+      leading: Icon(
+        icon,
+        size: 26,
+      ),
       title: Text(
         title,
         style: TextStyle(
             fontFamily: 'RobotoCondensed',
             fontSize: 20,
-            fontWeight: FontWeight.bold
-        ),
+            fontWeight: FontWeight.bold),
       ),
       onTap: tapHandler,
     );
   }
+
+  bool showInHindi;
+
+  @override
+  void initState() {
+    super.initState();
+    showInHindi = widget.showInHindi;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final height=MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return Drawer(
       child: Column(
         children: [
           SafeArea(
             child: Container(
-              height: height*0.3,
+              height: height * 0.3,
               width: double.infinity,
               padding: EdgeInsets.all(20),
               //alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor
-              ),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CircleAvatar(
-                    radius: 70,
-                      child: Image.asset('assets/other_images/drawer_image.png',)
-                  ),
+                      radius: 70,
+                      child: Image.asset(
+                        'assets/other_images/drawer_image.png',
+                      )),
                   FittedBox(
                     child: Text(
                       'A good product can speak globally !!',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'BalsamiqSans',
-                        fontSize: 20
-                      ),
+                          color: Colors.white,
+                          fontFamily: 'BalsamiqSans',
+                          fontSize: 20),
                     ),
                   )
                 ],
@@ -57,30 +72,39 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
           ),
           SizedBox(height: 20),
-          buildListTile(
-              'Home',
-              Icons.home,
-                  (){
-                Navigator.of(context).pushReplacementNamed('/home-screen');
-              }
-          ),
+          buildListTile('Home', Icons.home, () {
+            Navigator.of(context).pushReplacementNamed('/home-screen');
+          }),
           SizedBox(height: 20),
-          buildListTile(
-              'Categories',
-              Icons.category,
-                  (){
-                Navigator.of(context).pushReplacementNamed('/category-screen');
-              }
-          ),
+          buildListTile('Categories', Icons.category, () {
+            Navigator.of(context).pushReplacementNamed('/category-screen');
+          }),
           SizedBox(height: 20),
-          buildListTile(
-              'Info',
-              Icons.info,
-                  (){
-                Navigator.of(context).pushReplacementNamed('/info-page');
-              }
-          ),
-          
+          buildListTile('Info', Icons.info, () {
+            Navigator.of(context).pushReplacementNamed('/info-page');
+          }),
+          SizedBox(height: 20),
+          if (widget.showSwitch)
+            SwitchListTile(
+              value: showInHindi,
+              onChanged: (value) {
+                setState(() {
+                  showInHindi = value;
+                });
+                widget.changeLanguage();
+              },
+              title: Text(
+                'Show in hindi ',
+                style: TextStyle(
+                    fontFamily: 'RobotoCondensed',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              secondary: Icon(
+                Icons.language,
+                size: 26,
+              ),
+            )
         ],
       ),
     );

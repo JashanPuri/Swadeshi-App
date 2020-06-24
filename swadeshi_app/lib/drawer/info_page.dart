@@ -50,7 +50,7 @@ class InfoPage extends StatelessWidget {
     final width=MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: appbar,
-      drawer: MainDrawer(),
+      drawer: MainDrawer(showSwitch: false,),
       body: PageView(
         controller: controller,
         pageSnapping: true,

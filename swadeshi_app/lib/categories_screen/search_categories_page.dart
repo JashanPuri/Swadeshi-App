@@ -9,6 +9,8 @@ import '../items_screen/items_tile.dart';
 
 class SearchCategoriesAndProducts extends SearchDelegate {
   bool showCategories = false;
+  bool showInHindi;
+  SearchCategoriesAndProducts(this.showInHindi);
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -40,7 +42,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
         ? CATEGORIES.where((element) {
             return element.title.toLowerCase().contains(query.toLowerCase());
           }).toList()
-        : ITEMS.where((element) {
+        : (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
             return element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.title.toLowerCase().contains(query.toLowerCase()) ||
                 element.company.toLowerCase().contains(query.toLowerCase());
@@ -98,6 +100,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                 padding: const EdgeInsets.all(10),
                 children: resultList
                     .map((catData) => CategoryItem(
+                      showInHindi: showInHindi,
                           category: catData,
                           //catData.color
                         ))
@@ -128,7 +131,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
         ? CATEGORIES.where((element) {
             return element.title.toLowerCase().contains(query.toLowerCase());
           }).toList()
-        : ITEMS.where((element) {
+        : (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
             return element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.title.toLowerCase().contains(query.toLowerCase()) ||
                 element.company.toLowerCase().contains(query.toLowerCase());
@@ -187,6 +190,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                 children: suggestionList
                     .map((catData) => CategoryItem(
                           category: catData,
+                          showInHindi: showInHindi,
                           //catData.color
                         ))
                     .toList(),

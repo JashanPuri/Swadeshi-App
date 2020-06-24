@@ -7,13 +7,14 @@ import '../item_data.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
+  final bool showInHindi;
   List<Item> get itemsPerCategory {
-    return ITEMS.where((element) {
+    return (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
       return element.id == category.id;
     }).toList();
   }
 
-  CategoryItem({this.category});
+  CategoryItem({this.category,this.showInHindi});
   @override
   Widget build(BuildContext context) {
     return InkWell(

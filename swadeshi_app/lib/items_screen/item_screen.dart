@@ -18,20 +18,20 @@ class ItemScreen extends StatefulWidget {
 }
 
 class _ItemScreenState extends State<ItemScreen> {
-  bool onlyIndian = false;
+  bool showAll = false;
 
   void switchIndian() {
     setState(() {
-      onlyIndian = !onlyIndian;
+      showAll = !showAll;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     var _theme = Theme.of(context);
-    List<Item> finalListItems = onlyIndian
-        ? widget.items.where((element) => element.indian).toList()
-        : widget.items;
+    List<Item> finalListItems = showAll
+        ? widget.items
+        : widget.items.where((element) => element.indian).toList();
 
     return SafeArea(
       child: Scaffold(
@@ -52,7 +52,7 @@ class _ItemScreenState extends State<ItemScreen> {
                     icon: Icon(Icons.search),
                     onPressed: () => showSearch(
                         context: context,
-                        delegate: ItemSearch(itemList: finalListItems)),
+                        delegate: ItemSearch(itemList: widget.items)),
                   ),
                 ),
                 // Padding(
@@ -86,7 +86,7 @@ class _ItemScreenState extends State<ItemScreen> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
-                        'Apply Filter',
+                        'Show all products',
                         style: Theme.of(context).textTheme.headline5.copyWith(
                               color: Colors.grey[700],
                               fontSize: 17,
@@ -94,15 +94,9 @@ class _ItemScreenState extends State<ItemScreen> {
                       ),
                     ),
                     AnimatedToggleButton(
-                      boolValue: onlyIndian,
+                      boolValue: showAll,
                       changeState: switchIndian,
-                      buttonOff: Icon(
-                          Icons.remove_circle_outline,
-                          color: Colors.red,
-                          size: 30,
-                          key: UniqueKey(),
-                        ),
-                      buttonOn: Padding(
+                      buttonOff: Padding(
                         padding: const EdgeInsets.only(top: 2.8),
                         child: Container(
                           decoration: BoxDecoration(
@@ -117,6 +111,12 @@ class _ItemScreenState extends State<ItemScreen> {
                             ),
                           ),
                         ),
+                      ),
+                      buttonOn: Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.green,
+                        size: 30,
+                        key: UniqueKey(),
                       ),
                     )
                   ],

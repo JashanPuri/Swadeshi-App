@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:swadeshi_app/animatedToggleButton.dart';
-import 'package:swadeshi_app/category_data.dart';
-import 'package:swadeshi_app/item_data.dart';
+import 'package:swadeshi_app/models/item.dart';
 
-import 'home_screen/category_item.dart';
-import 'items_screen/items_tile.dart';
+import '../animatedToggleButton.dart';
+import '../category_data.dart';
+import '../item_data.dart';
+import 'category_item.dart';
+import '../items_screen/items_tile.dart';
 
 class SearchCategoriesAndProducts extends SearchDelegate {
-  bool showProducts = false;
+  bool showCategories = false;
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -35,14 +36,19 @@ class SearchCategoriesAndProducts extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    var resultList = showProducts
-        ? ITEMS.where((element) {
-            return element.name.toLowerCase().contains(query.toLowerCase()) ||
-                element.title.toLowerCase().contains(query.toLowerCase());
-          }).toList()
-        : CATEGORIES.where((element) {
+    var resultList = showCategories
+        ? CATEGORIES.where((element) {
             return element.title.toLowerCase().contains(query.toLowerCase());
+          }).toList()
+        : ITEMS.where((element) {
+            return element.name.toLowerCase().contains(query.toLowerCase()) ||
+                element.title.toLowerCase().contains(query.toLowerCase()) ||
+                element.company.toLowerCase().contains(query.toLowerCase());
           }).toList();
+
+    if (!showCategories)
+      (resultList as List<Item>).sort((a, b) => a.name.compareTo(b.name));
+
     return query == ""
         ? Align(
             alignment: Alignment.topCenter,
@@ -56,7 +62,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Search by products',
+                        'Search categories',
                         style: Theme.of(context)
                             .textTheme
                             .headline5
@@ -67,7 +73,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                       padding: const EdgeInsets.only(top: 5, bottom: 50),
                       child: AnimatedToggleButton(
                         changeState: changeState,
-                        boolValue: showProducts,
+                        boolValue: showCategories,
                         buttonOff: Icon(
                           Icons.remove_circle_outline,
                           color: Colors.red,
@@ -87,16 +93,8 @@ class SearchCategoriesAndProducts extends SearchDelegate {
               ),
             ),
           )
-        : showProducts
-            ? ListView.builder(
-                itemCount: resultList.length,
-                itemBuilder: (context, index) {
-                  return ItemTile(
-                    itemTile: resultList[index],
-                  );
-                },
-              )
-            : GridView(
+        : showCategories
+            ? GridView(
                 padding: const EdgeInsets.all(10),
                 children: resultList
                     .map((catData) => CategoryItem(
@@ -109,23 +107,36 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                     childAspectRatio: 1.8 / 2,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 10),
+              )
+            : ListView.builder(
+                itemCount: resultList.length,
+                itemBuilder: (context, index) {
+                  return ItemTile(
+                    itemTile: resultList[index],
+                  );
+                },
               );
   }
 
   void changeState() {
-    showProducts = !showProducts;
+    showCategories = !showCategories;
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var suggestionList = showProducts
-        ? ITEMS.where((element) {
-            return element.name.toLowerCase().contains(query.toLowerCase()) ||
-                element.title.toLowerCase().contains(query.toLowerCase());
-          }).toList()
-        : CATEGORIES.where((element) {
+    var suggestionList = showCategories
+        ? CATEGORIES.where((element) {
             return element.title.toLowerCase().contains(query.toLowerCase());
+          }).toList()
+        : ITEMS.where((element) {
+            return element.name.toLowerCase().contains(query.toLowerCase()) ||
+                element.title.toLowerCase().contains(query.toLowerCase()) ||
+                element.company.toLowerCase().contains(query.toLowerCase());
           }).toList();
+
+    if (!showCategories)
+      (suggestionList as List<Item>).sort((a, b) => a.name.compareTo(b.name));
+
     return query == ""
         ? Align(
             alignment: Alignment.topCenter,
@@ -139,7 +150,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Search by products',
+                        'Search categories',
                         style: Theme.of(context)
                             .textTheme
                             .headline5
@@ -150,7 +161,7 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                       padding: const EdgeInsets.only(top: 5, bottom: 50),
                       child: AnimatedToggleButton(
                         changeState: changeState,
-                        boolValue: showProducts,
+                        boolValue: showCategories,
                         buttonOff: Icon(
                           Icons.remove_circle_outline,
                           color: Colors.red,
@@ -170,16 +181,8 @@ class SearchCategoriesAndProducts extends SearchDelegate {
               ),
             ),
           )
-        : showProducts
-            ? ListView.builder(
-                itemCount: suggestionList.length,
-                itemBuilder: (context, index) {
-                  return ItemTile(
-                    itemTile: suggestionList[index],
-                  );
-                },
-              )
-            : GridView(
+        : showCategories
+            ? GridView(
                 padding: const EdgeInsets.all(10),
                 children: suggestionList
                     .map((catData) => CategoryItem(
@@ -192,6 +195,14 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                     childAspectRatio: 1.8 / 2,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 10),
+              )
+            : ListView.builder(
+                itemCount: suggestionList.length,
+                itemBuilder: (context, index) {
+                  return ItemTile(
+                    itemTile: suggestionList[index],
+                  );
+                },
               );
   }
 

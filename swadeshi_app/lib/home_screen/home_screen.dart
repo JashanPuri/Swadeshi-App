@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top;
+    final width = MediaQuery.of(context).size.width;
     bool showInHindi = widget.showInHindi;
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +40,24 @@ class _HomeScreenState extends State<HomeScreen> {
         showSwitch: true,
       ),
       body: Column(
-        children: <Widget>[],
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: Container(
+              height: height*0.3,
+                width: width*0.75,
+                child: Image.asset('assets/other_images/search_icon.jpg',fit: BoxFit.fill,),
+            ),
+          ),
+          Text(
+            'Search For Products here !!',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.grey,
+              fontFamily: 'BalsamiqSans'
+            ),
+          )
+        ],
       ),
     );
   }

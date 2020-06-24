@@ -88,6 +88,9 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                         ),
                       ),
                     ),
+                    Container(
+                      child: Image.asset('assets/other_images/empty_list.png'),
+                    )
                   ],
                 ),
               ),
@@ -176,6 +179,9 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                         ),
                       ),
                     ),
+                    Container(
+                      child: Image.asset('assets/other_images/empty_list.png'),
+                    )
                   ],
                 ),
               ),

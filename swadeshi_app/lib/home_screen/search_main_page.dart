@@ -43,7 +43,9 @@ class SearchProducts extends SearchDelegate {
     resultList.sort((a, b) => a.name.compareTo(b.name));
 
     return query == ""
-        ? Container()
+        ? Container(
+      child: Image.asset('assets/other_images/empty_list.png'),
+    )
         : ListView.builder(
             itemCount: resultList.length,
             itemBuilder: (context, index) {
@@ -68,7 +70,9 @@ class SearchProducts extends SearchDelegate {
     suggestionList.sort((a, b) => a.name.compareTo(b.name));
 
     return query == ""
-        ? Container()
+        ? Container(
+      child: Image.asset('assets/other_images/empty_list.png'),
+    )
         : ListView.builder(
             itemCount: suggestionList.length,
             itemBuilder: (context, index) {

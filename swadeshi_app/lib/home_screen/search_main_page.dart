@@ -47,8 +47,11 @@ class SearchProducts extends SearchDelegate {
         : ListView.builder(
             itemCount: resultList.length,
             itemBuilder: (context, index) {
-              return ItemTile(
-                itemTile: resultList[index],
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: ItemTile(
+                  itemTile: resultList[index],
+                ),
               );
             },
           );

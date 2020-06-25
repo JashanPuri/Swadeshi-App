@@ -76,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 padding: EdgeInsets.all(10),
                 width: width*0.9,
-                height: height*0.065,
+                height: 52,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(26),
                   //color: Colors.grey,
                   border: Border.all(color: Colors.grey)
                 ),
@@ -86,12 +86,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Icon(
                       Icons.search,
-                      size: 35,
+                      size: 33,
                       color: Colors.grey,
                     ),
-                    Text(
-                      'Search',
-                      style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'Search',
+                        style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 20),
+                      ),
                     )
                   ],
                 ),

@@ -23,20 +23,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var showInHindi;
-
-  @override
-  void initState() {
-    super.initState();
-    showInHindi = false;
-  }
-
-  void changeLanguage() {
-    setState(() {
-      showInHindi = !showInHindi;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,8 +36,13 @@ class _MyAppState extends State<MyApp> {
         title: 'Swadeshi App',
         theme: ThemeData(
           primaryColor: Colors.blue,
-          // accentColor: Colors.blue,
+          accentColor: Colors.grey,
           textTheme: TextTheme(
+              headline1: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'BalsamiqSans',
+                  color: Colors.grey
+              ),
             headline6: TextStyle(
                 fontSize: 20,
                 fontFamily: 'BalsamiqSans',
@@ -63,15 +54,13 @@ class _MyAppState extends State<MyApp> {
               fontWeight: FontWeight.normal,
               color: Colors.white,
             ),
+
           ),
         ),
         home: splashScreen(),
         routes: {
-          '/home-screen': (ctx) => HomeScreen(
-                changeLanguage: changeLanguage,
-                showInHindi: showInHindi,
-              ),
-          '/category-screen': (ctx) => CategoryScreen(showInHindi),
+          '/home-screen': (ctx) => HomeScreen(),
+          '/category-screen': (ctx) => CategoryScreen(),
           '/info-page': (ctx) => InfoPage()
         });
   }

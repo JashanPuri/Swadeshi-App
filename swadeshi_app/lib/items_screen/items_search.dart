@@ -36,7 +36,10 @@ class ItemSearch extends SearchDelegate {
     var resultList = itemList.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase()) ||
           element.title.toLowerCase().contains(query.toLowerCase()) ||
-          element.company.toLowerCase().contains(query.toLowerCase());
+          element.company.toLowerCase().contains(query.toLowerCase()) ||
+          element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.company_hindi.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     resultList.sort((a, b) => a.name.compareTo(b.name));
@@ -56,9 +59,11 @@ class ItemSearch extends SearchDelegate {
     var suggestionList = itemList.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase()) ||
           element.title.toLowerCase().contains(query.toLowerCase()) ||
-          element.company.toLowerCase().contains(query.toLowerCase());
+          element.company.toLowerCase().contains(query.toLowerCase()) ||
+          element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.company_hindi.toLowerCase().contains(query.toLowerCase());
     }).toList();
-
     suggestionList.sort((a, b) => a.name.compareTo(b.name));
 
     return query == ""

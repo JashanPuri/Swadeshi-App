@@ -15,11 +15,31 @@ class ItemTile extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
       child: ListTile(
         // isThreeLine: true,
-        title: Text(
-          itemTile.name,
-          style: _theme.textTheme.headline5.copyWith(color: Colors.black),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              itemTile.name,
+              style: _theme.textTheme.headline5.copyWith(color: Colors.black),
+            ),
+            Text(
+              itemTile.name_hindi,
+              style: _theme.textTheme.headline1,
+            )
+          ],
         ),
-        subtitle: Text('${itemTile.company}'),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${itemTile.company}',
+              style: _theme.textTheme.headline5.copyWith(color: Colors.black)),
+            Text(
+                '${itemTile.company_hindi}',
+                style: _theme.textTheme.headline1
+            )
+          ],
+        ),
         trailing: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
@@ -28,6 +48,7 @@ class ItemTile extends StatelessWidget {
               style: _theme.textTheme.headline5
                   .copyWith(color: Colors.black54, fontSize: 15),
             ),
+            //Text('${itemTile.title_hindi}'),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: itemTile.indian

@@ -83,28 +83,6 @@ class _MainDrawerState extends State<MainDrawer> {
           buildListTile('Info', Icons.info, () {
             Navigator.of(context).pushReplacementNamed('/info-page');
           }),
-          SizedBox(height: 20),
-          if (widget.showSwitch)
-            SwitchListTile(
-              value: showInHindi,
-              onChanged: (value) {
-                setState(() {
-                  showInHindi = value;
-                });
-                widget.changeLanguage();
-              },
-              title: Text(
-                'Show in hindi ',
-                style: TextStyle(
-                    fontFamily: 'RobotoCondensed',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-              secondary: Icon(
-                Icons.language,
-                size: 26,
-              ),
-            )
         ],
       ),
     );

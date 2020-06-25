@@ -1,9 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:swadeshi_app/home_screen/home_screen.dart';
 import '../drawer/info_data.dart';
 import '../drawer/drawer.dart';
 
-class InfoPage extends StatelessWidget {
+class InfoPage extends StatefulWidget {
+
+  @override
+  _InfoPageState createState() => _InfoPageState();
+}
+
+class _InfoPageState extends State<InfoPage> {
+  Future<bool> _backPressed() {
+    return Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeScreen()));
+  }
 
   final controller = PageController(
     initialPage: 0
@@ -41,6 +52,7 @@ class InfoPage extends StatelessWidget {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     final appbar = AppBar(
@@ -48,16 +60,19 @@ class InfoPage extends StatelessWidget {
     );
     final height=MediaQuery.of(context).size.height-appbar.preferredSize.height;
     final width=MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: appbar,
-      drawer: MainDrawer(showSwitch: false,),
-      body: PageView(
-        controller: controller,
-        pageSnapping: true,
-        children: [
-          cardBuilder(INFORMATION[0], Image.asset('assets/other_images/info_page1.png',fit: BoxFit.cover,)),
-          cardBuilder(INFORMATION[1], Image.asset('assets/other_images/info_page2.jpg',fit: BoxFit.cover,)),
-        ],
+    return WillPopScope(
+      onWillPop: _backPressed,
+      child: Scaffold(
+        appBar: appbar,
+        drawer: MainDrawer(showSwitch: false,),
+        body: PageView(
+          controller: controller,
+          pageSnapping: true,
+          children: [
+            cardBuilder(INFORMATION[0], Image.asset('assets/other_images/info_page1.png',fit: BoxFit.cover,)),
+            cardBuilder(INFORMATION[1], Image.asset('assets/other_images/info_page2.jpg',fit: BoxFit.cover,)),
+          ],
+        ),
       ),
     );
   }

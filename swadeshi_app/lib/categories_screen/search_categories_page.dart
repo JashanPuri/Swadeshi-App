@@ -9,9 +9,6 @@ import '../items_screen/items_tile.dart';
 
 class SearchCategoriesAndProducts extends SearchDelegate {
   bool showCategories = false;
-  bool showInHindi;
-  SearchCategoriesAndProducts(this.showInHindi);
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -42,11 +39,14 @@ class SearchCategoriesAndProducts extends SearchDelegate {
         ? CATEGORIES.where((element) {
             return element.title.toLowerCase().contains(query.toLowerCase());
           }).toList()
-        : (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
+        : ITEMS.where((element) {
             return element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.title.toLowerCase().contains(query.toLowerCase()) ||
-                element.company.toLowerCase().contains(query.toLowerCase());
-          }).toList();
+                element.company.toLowerCase().contains(query.toLowerCase()) ||
+                element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+                element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+                element.company_hindi.toLowerCase().contains(query.toLowerCase());
+    }).toList();
 
     if (!showCategories)
       (resultList as List<Item>).sort((a, b) => a.name.compareTo(b.name));
@@ -103,7 +103,6 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                 padding: const EdgeInsets.all(10),
                 children: resultList
                     .map((catData) => CategoryItem(
-                      showInHindi: showInHindi,
                           category: catData,
                           //catData.color
                         ))
@@ -134,10 +133,13 @@ class SearchCategoriesAndProducts extends SearchDelegate {
         ? CATEGORIES.where((element) {
             return element.title.toLowerCase().contains(query.toLowerCase());
           }).toList()
-        : (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
+        : ITEMS.where((element) {
             return element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.title.toLowerCase().contains(query.toLowerCase()) ||
-                element.company.toLowerCase().contains(query.toLowerCase());
+                element.company.toLowerCase().contains(query.toLowerCase()) ||
+                element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+                element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+                element.company_hindi.toLowerCase().contains(query.toLowerCase());
           }).toList();
 
     if (!showCategories)
@@ -196,7 +198,6 @@ class SearchCategoriesAndProducts extends SearchDelegate {
                 children: suggestionList
                     .map((catData) => CategoryItem(
                           category: catData,
-                          showInHindi: showInHindi,
                           //catData.color
                         ))
                     .toList(),

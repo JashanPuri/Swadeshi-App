@@ -4,10 +4,6 @@ import '../items_screen/items_tile.dart';
 import '../item_data.dart';
 
 class SearchProducts extends SearchDelegate {
-  bool showInHindi;
-
-  SearchProducts(this.showInHindi);
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -34,10 +30,13 @@ class SearchProducts extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    var resultList = (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
+    var resultList = ITEMS.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase()) ||
           element.title.toLowerCase().contains(query.toLowerCase()) ||
-          element.company.toLowerCase().contains(query.toLowerCase());
+          element.company.toLowerCase().contains(query.toLowerCase())||
+          element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.company_hindi.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     resultList.sort((a, b) => a.name.compareTo(b.name));
@@ -61,10 +60,13 @@ class SearchProducts extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var suggestionList = (showInHindi ? ITEMS_HINDI : ITEMS).where((element) {
+    var suggestionList = ITEMS.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase()) ||
           element.title.toLowerCase().contains(query.toLowerCase()) ||
-          element.company.toLowerCase().contains(query.toLowerCase());
+          element.company.toLowerCase().contains(query.toLowerCase())||
+          element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+          element.company_hindi.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     suggestionList.sort((a, b) => a.name.compareTo(b.name));

@@ -30,21 +30,42 @@ class SearchProducts extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    var resultList = ITEMS.where((element) {
-      return element.name.toLowerCase().contains(query.toLowerCase()) ||
-          element.title.toLowerCase().contains(query.toLowerCase()) ||
-          element.company.toLowerCase().contains(query.toLowerCase())||
-          element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
-          element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
-          element.company_hindi.toLowerCase().contains(query.toLowerCase());
+    var resultListIndian = ITEMS.where((element) {
+      return (element.name.toLowerCase().contains(query.toLowerCase()) ||
+              element.title.toLowerCase().contains(query.toLowerCase()) ||
+              element.company.toLowerCase().contains(query.toLowerCase()) ||
+              element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.company_hindi
+                  .toLowerCase()
+                  .contains(query.toLowerCase())) &&
+          element.indian;
     }).toList();
+
+    resultListIndian.sort((a, b) => a.name.compareTo(b.name));
+
+    var resultListNotIndian = ITEMS.where((element) {
+      return (element.name.toLowerCase().contains(query.toLowerCase()) ||
+              element.title.toLowerCase().contains(query.toLowerCase()) ||
+              element.company.toLowerCase().contains(query.toLowerCase()) ||
+              element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.company_hindi
+                  .toLowerCase()
+                  .contains(query.toLowerCase())) &&
+          element.indian;
+    }).toList();
+
+    resultListNotIndian.sort((a, b) => a.name.compareTo(b.name));
+
+    var resultList = [...resultListIndian, ...resultListNotIndian];
 
     resultList.sort((a, b) => a.name.compareTo(b.name));
 
     return query == ""
         ? Container(
-      child: Image.asset('assets/other_images/empty_list.png'),
-    )
+            child: Image.asset('assets/other_images/empty_list.png'),
+          )
         : ListView.builder(
             itemCount: resultList.length,
             itemBuilder: (context, index) {
@@ -60,21 +81,38 @@ class SearchProducts extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var suggestionList = ITEMS.where((element) {
-      return element.name.toLowerCase().contains(query.toLowerCase()) ||
-          element.title.toLowerCase().contains(query.toLowerCase()) ||
-          element.company.toLowerCase().contains(query.toLowerCase())||
-          element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
-          element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
-          element.company_hindi.toLowerCase().contains(query.toLowerCase());
+    var suggestionListIndian = ITEMS.where((element) {
+      return (element.name.toLowerCase().contains(query.toLowerCase()) ||
+              element.title.toLowerCase().contains(query.toLowerCase()) ||
+              element.company.toLowerCase().contains(query.toLowerCase()) ||
+              element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.company_hindi
+                  .toLowerCase()
+                  .contains(query.toLowerCase())) &&
+          element.indian;
     }).toList();
+    suggestionListIndian.sort((a, b) => a.name.compareTo(b.name));
 
-    suggestionList.sort((a, b) => a.name.compareTo(b.name));
+    var suggestionListNotIndian = ITEMS.where((element) {
+      return (element.name.toLowerCase().contains(query.toLowerCase()) ||
+              element.title.toLowerCase().contains(query.toLowerCase()) ||
+              element.company.toLowerCase().contains(query.toLowerCase()) ||
+              element.name_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.title_hindi.toLowerCase().contains(query.toLowerCase()) ||
+              element.company_hindi.toLowerCase().contains(
+                    query.toLowerCase(),
+                  )) &&
+          !element.indian;
+    }).toList();
+    suggestionListNotIndian.sort((a, b) => a.name.compareTo(b.name));
+
+    var suggestionList = [...suggestionListIndian, ...suggestionListNotIndian];
 
     return query == ""
         ? Container(
-      child: Image.asset('assets/other_images/empty_list.png'),
-    )
+            child: Image.asset('assets/other_images/empty_list.png'),
+          )
         : ListView.builder(
             itemCount: suggestionList.length,
             itemBuilder: (context, index) {
